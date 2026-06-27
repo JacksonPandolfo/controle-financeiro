@@ -1,151 +1,232 @@
-# 💰 Controle Financeiro - Full Stack Monorepo
+# 💰 Controle Financeiro
 
-![Python](https://shields.io)
-![FastAPI](https://shields.io)
-![Vite](https://shields.io)
-![React](https://shields.io)
-![Tailwind CSS](https://shields.io)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge\&logo=fastapi\&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge\&logo=react\&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge\&logo=vite\&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge\&logo=tailwind-css\&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-D71F00?style=for-the-badge\&logo=sqlalchemy\&logoColor=white)
 
-Este é um sistema de gestão de finanças pessoais desenvolvido originalmente como projeto final para a cadeira de **Fundamentos de Python**. A aplicação foi projetada seguindo rigorosos padrões de arquitetura de software de mercado, contando com uma API RESTful de alta performance no backend e uma interface rica e responsiva no frontend.
+Sistema Full Stack para gerenciamento de finanças pessoais desenvolvido utilizando **FastAPI** e **React**.
 
----
-
-## 🛠️ Tecnologias e Arquitetura Avançada
-
-### Backend (API)
-* **FastAPI & Uvicorn**: Framework assíncrono moderno focado em alta performance e documentação automatizada.
-* **SQLAlchemy & SQLite**: Camada de persistência relacional robusta utilizando mapeamento objeto-relacional (ORM).
-* **Pydantic (v2)**: Contratos de dados estritos e validação de tipos avançados (como `EmailStr`).
-* **Clean Architecture / Pattern Layering**: Separação clara de responsabilidades dividida em:
-  * **Routers**: Exposição limpa de endpoints REST.
-  * **Services**: Centralização das regras de negócio do sistema.
-  * **Repositories**: Isolamento total das consultas e operações diretas de banco de dados (CRUD).
-  * **Core**: Centralização de segurança (hashing de senhas), exceções customizadas e injeção de dependências.
-
-### Frontend (Interface)
-* **Vite**: Ferramenta de build ultra-rápida para o ecossistema Javascript.
-* **Tailwind CSS & PostCSS**: Design modular, utilitário e totalmente responsivo para desktop e mobile.
-* **Services Layer**: Isolamento de chamadas HTTP organizadas por domínio da aplicação.
+O projeto permite o gerenciamento de usuários, categorias e transações financeiras através de uma API REST documentada automaticamente, seguindo arquitetura em camadas e boas práticas de desenvolvimento backend.
 
 ---
 
-## 📂 Estrutura Completa do Monorepo
+# 📸 Demonstração
+
+> *(Adicionar screenshots da aplicação aqui)*
+
+* Login
+* Dashboard
+* Cadastro de Transações
+* Cadastro de Categorias
+
+---
+
+# ✨ Funcionalidades
+
+### 👤 Usuários
+
+* Cadastro de usuários
+* Login
+* Validação de dados
+* Armazenamento seguro de senhas
+
+### 💰 Transações
+
+* Cadastro de receitas
+* Cadastro de despesas
+* Atualização de transações
+* Exclusão de transações
+* Consulta de movimentações
+
+### 📂 Categorias
+
+* Cadastro de categorias
+* Atualização
+* Exclusão
+* Associação com transações
+
+### 🌐 API REST
+
+* Endpoints organizados
+* Validação automática de requisições
+* Documentação Swagger
+* Separação entre camadas da aplicação
+
+---
+
+# 🛠️ Tecnologias
+
+| Categoria      | Tecnologia   |
+| -------------- | ------------ |
+| Backend        | FastAPI      |
+| Frontend       | React        |
+| Build          | Vite         |
+| ORM            | SQLAlchemy   |
+| Banco de Dados | SQLite       |
+| Validação      | Pydantic     |
+| Estilização    | Tailwind CSS |
+
+---
+
+# 🏗️ Arquitetura
+
+O backend foi desenvolvido utilizando arquitetura em camadas, separando claramente as responsabilidades da aplicação.
+
+```text
+Cliente (React)
+
+        │
+
+        ▼
+
+FastAPI (Routers)
+
+        │
+
+        ▼
+
+Services
+
+        │
+
+        ▼
+
+Repositories
+
+        │
+
+        ▼
+
+SQLite
+```
+
+Essa abordagem facilita a manutenção, reutilização de código e evolução do sistema.
+
+---
+
+# 📂 Estrutura do Projeto
 
 ```text
 controle-financeiro/
-├── backend/                # Ecossistema do Servidor Python (FastAPI)
-│   ├── api/                # Camada de exposição e comunicação externa da API
-│   │   └── routers/        # Definição das rotas e endpoints do sistema
-│   │       ├── categoria_router.py
-│   │       ├── transacao_router.py
-│   │       └── usuario_router.py
-│   ├── core/               # Configurações globais e utilitários do sistema
-│   │   ├── config.py       # Gerenciamento de variáveis de ambiente (.env)
-│   │   ├── dependencies.py # Dependências injetáveis (ex: autenticação, get_db)
-│   │   ├── enums.py        # Definição de enumeradores e tipos fixos do sistema
-│   │   ├── exceptions.py   # Customização e tratamento centralizado de erros
-│   │   └── security.py     # Lógica de criptografia de senhas e geração de tokens
-│   ├── db/                 # Infraestrutura de persistência de dados
-│   │   ├── base.py         # Registro e centralização de tabelas para migrações/criação
-│   │   └── session.py      # Configuração do Engine e criação da sessão do SQLAlchemy
-│   ├── models/             # Entidades e mapeamento de tabelas do SQLAlchemy
-│   │   ├── categoria.py
-│   │   ├── transacao.py
-│   │   └── usuario.py
-│   ├── repositories/       # Camada de acesso ao banco de dados (Consultas, SQL, CRUD bruto)
-│   │   ├── categoria_repositorio.py
-│   │   ├── transacao_repositorio.py
-│   │   └── usuario_repositorio.py
-│   ├── schemas/            # Contratos de dados e validações do Pydantic (Request/Response)
-│   │   ├── categoria_schema.py
-│   │   ├── transacao_schema.py
-│   │   └── usuario_schema.py
-│   ├── services/           # Camada de regras de negócio e validações da aplicação
-│   │   ├── categoria_service.py
-│   │   ├── transacao_service.py
-│   │   └── usuario_service.py
-│   ├── main.py             # Ponto de inicialização do FastAPI e do servidor Uvicorn
-│   └── requirements.txt    # Lista oficial de dependências do Python para instalação rápida
-├── frontend/               # Interface do Usuário (Vite + React + Tailwind)
-│   ├── public/             # Arquivos estáticos (Favicon, manifestos, ativos não processados)
-│   ├── src/                # Código-fonte principal da aplicação
-│   │   ├── components/     # Componentes visuais reutilizáveis das telas
-│   │   │   ├── CategoriaModal.jsx
-│   │   │   ├── ConfirmaModal.jsx
-│   │   │   └── TransacaoModal.jsx
-│   │   ├── icons/          # Elementos visuais e imagens locais do sistema
-│   │   │   └── cash_pig.png
-│   │   ├── pages/          # Telas completas de rotas da aplicação
-│   │   │   ├── Login.jsx
-│   │   │   ├── Register.jsx
-│   │   │   └── Transacoes.jsx
-│   │   ├── services/       # Integração e chamadas de API (Comunicação com o FastAPI)
-│   │   │   ├── categoriaApi.jsx
-│   │   │   ├── transacaoApi.jsx
-│   │   │   └── usuarioApi.jsx
-│   │   ├── App.jsx         # Componente raiz que gerencia o fluxo global e rotas
-│   │   ├── config.js       # Configurações globais de scripts do frontend
-│   │   ├── index.css       # Estilos globais e injeção de diretivas do Tailwind CSS
-│   │   └── main.jsx        # Ponto de entrada do React que renderiza a aplicação no DOM
-└── README.md           # Apresentação do projeto (Este arquivo)
+
+├── backend/
+│   ├── api/
+│   ├── core/
+│   ├── db/
+│   ├── models/
+│   ├── repositories/
+│   ├── schemas/
+│   ├── services/
+│   └── main.py
+│
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── pages/
+│       ├── services/
+│       └── App.jsx
+│
+└── README.md
 ```
+
 ---
 
-## 🚀 Como Executar o Projeto Localmente
+# 🚀 Como executar
 
-### 1. Clonando o Repositório
+## Clonando o projeto
+
 ```bash
-git clone https://github.com
+git clone https://github.com/JacksonPandolfo/controle-financeiro.git
+
 cd controle-financeiro
 ```
 
-### 2. Inicializando o Backend
-Navegue até a pasta do servidor e configure o ambiente virtual:
+## Backend
+
 ```bash
 cd backend
+
 python -m venv venv
-```
-Ative o ambiente virtual:
-* **Windows (PowerShell):** `.\venv\Scripts\activate`
-* **Mac/Linux:** `source venv/bin/activate`
 
-Instale os pacotes necessários:
-```bash
+# Windows
+venv\Scripts\activate
+
+# Linux / macOS
+source venv/bin/activate
+
 pip install -r requirements.txt
-```
 
-Crie o seu arquivo `.env` na pasta `backend/` seguindo o modelo:
-```text
-DATABASE_URL=sqlite:///./backend/db/app.db
-APP_NAME="Controle Financeiro"
-```
-
-Inicie o servidor de desenvolvimento:
-```bash
 uvicorn main:app --reload
 ```
-A API estará ativa em `http://127.0.0.1:8000`. Acesse a documentação interativaSwagger em `/docs`.
 
-### 3. Inicializando o Frontend
-Abra um novo terminal na pasta raiz do projeto e navegue até o frontend:
-```bash
-cd frontend
+A API estará disponível em:
+
 ```
-Instale as dependências do Node:
-```bash
-npm install
+http://localhost:8000
 ```
-Configure o arquivo `.env` do frontend apontando para a API:
-```text
-VITE_API_URL=http://127.0.0.1:8000
+
+Swagger:
+
 ```
-Rode o servidor de desenvolvimento do Vite:
-```bash
-npm run dev
+http://localhost:8000/docs
 ```
 
 ---
 
-## 🔒 Segurança e Melhores Práticas Aplicadas
-* **Zero Hardcoded Data**: Nenhuma senha, string de conexão de banco de dados ou chave de API foi fixada no código. Tudo é consumido via variáveis de ambiente isoladas.
-* **Git Protetor**: Configuração de múltiplos arquivos `.gitignore` para travar uploads de dados confidenciais (`.env`), bancos locais (`app.db`) e pastas pesadas (`node_modules`, `venv`).
+## Frontend
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+Aplicação:
+
+```
+http://localhost:5173
+```
+
+---
+
+# 🔒 Boas práticas adotadas
+
+* Arquitetura em camadas
+* Repository Pattern
+* Service Layer
+* Separação de responsabilidades
+* Validação de dados com Pydantic
+* Variáveis de ambiente (.env)
+* Hash de senhas
+* Organização em monorepositório
+
+---
+
+# 🚧 Próximas melhorias
+
+* Autenticação JWT
+* Dashboard com gráficos
+* Relatórios financeiros
+* Filtros por período
+* Docker
+* Testes automatizados
+* Deploy em nuvem
+
+---
+
+# 👨‍💻 Autor
+
+**Jackson Pandolfo**
+
+Graduado em Análise e Desenvolvimento de Sistemas e pós-graduando em Inteligência Artificial Aplicada.
+
+Desenvolvedor focado em Backend utilizando Python, FastAPI e bancos de dados relacionais.
+
+LinkedIn: www.linkedin.com/in/jacksonpandolfo
+
