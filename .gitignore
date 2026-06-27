@@ -1,0 +1,12 @@
+# Ambiente Virtual
+**/venv/
+__pycache__/
+*.pyc
+
+# Configurações locais e Banco de Dados
+backend/.env
+backend/db/app.db
+.vscode/
+
+# Frontend (Prevenção para o futuro)
+**/node_modules/
