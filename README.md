@@ -1,9 +1,10 @@
 # 💰 Controle Financeiro - Full Stack Monorepo
 
-[![Python](https://shields.io)](https://python.org)
-[![FastAPI](https://shields.io)](https://tiangolo.com)
-[![React](https://shields.io)](https://vite.dev)
-[![Tailwind CSS](https://shields.io)](https://tailwindcss.com)
+![Python](https://shields.io)
+![FastAPI](https://shields.io)
+![Vite](https://shields.io)
+![React](https://shields.io)
+![Tailwind CSS](https://shields.io)
 
 Este é um sistema de gestão de finanças pessoais desenvolvido originalmente como projeto final para a cadeira de **Fundamentos de Python**. A aplicação foi projetada seguindo rigorosos padrões de arquitetura de software de mercado, contando com uma API RESTful de alta performance no backend e uma interface rica e responsiva no frontend.
 
